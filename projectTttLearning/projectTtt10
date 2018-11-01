@@ -169,6 +169,9 @@ def canMove(): #see is a move can be made
 			move = True
 	return move
 
+def somethingsHappeningHere():
+	print('. . . what it is aint exactly clear.')
+
 # Here is where everything gets run  !!!!!!!!!!!
 
 #if checkWin ('X'):
