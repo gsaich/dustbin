@@ -9,6 +9,7 @@ move=0
 
 def play():
     global board
+    global move
     print('Tic-Tac-Toe')
     print('play against the computer AI level 3')
     printBoards(board)
@@ -26,9 +27,6 @@ def play():
             player_turn = swapPlayer(player_turn)
         if checkWin(swapPlayer(player_turn)):
             print('Player ', swapPlayer(player_turn), ' wins . . . New Game')
-           # wipeBoard()
-            #printBoards(refBoard)
-            #printBoards(board)
         else:
             print('A draw. . . . New game')
         wipeBoard()
@@ -37,6 +35,7 @@ def play():
 
 
 def generateMove():
+    global move
     corners = [0,2,6,8]
     opposite = [8,6,2,0]
     side = [1,3,5,7]
@@ -63,6 +62,7 @@ def generateMove():
 
 def prefMove(moves):
     global board
+    global move
     moved = False
     move = list()
     for potential in moves:
