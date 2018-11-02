@@ -4,45 +4,62 @@ from random import shuffle
 
 board = [ '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
 refBoard = [ '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
-# board = [ 'O', 'X', ' ', 'O', ' ', 'X', 'O', 'X', 'X' ]
 wins = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6] ] 
+move=0
 
 def play():
     global board
     print('Tic-Tac-Toe')
-    print('play against the computer AI level 1+')
+    print('play against the computer AI level 3')
     printBoards(board)
     while True:
         wipeBoard()
+        move = 0
         player_turn = 'X'
         while checkWin(swapPlayer(player_turn)) == False and canMove() == True:
             if player_turn == 'X':
                 getMove(player_turn)
+                move +=1
             else:
                 generateMove()
             printBoards(board)
             player_turn = swapPlayer(player_turn)
         if checkWin(swapPlayer(player_turn)):
             print('Player ', swapPlayer(player_turn), ' wins . . . New Game')
-            wipeBoard()
-            printBoards(refBoard)
-            printBoards(board)
+           # wipeBoard()
+            #printBoards(refBoard)
+            #printBoards(board)
         else:
             print('A draw. . . . New game')
-            wipeBoard()
-            printBoards(refBoard)
-            printBoards(board)
+        wipeBoard()
+        printBoards(refBoard)
+        printBoards(board)
 
 
 def generateMove():
-    if win_block():
-        pass
-    elif prefMove([0,2,6,8]): # corners 
-        pass
-    elif prefMove([4]): # middle
-        pass
-    else:
-        prefMove([1,3,5,7]) # middle row
+    corners = [0,2,6,8]
+    opposite = [8,6,2,0]
+    side = [1,3,5,7]
+    adjacent = [0,6,2,8]
+    if move == 1:
+        moved = False
+        for square in range(0,4):
+            if board[corners[square]]  == 'X':
+                moved = prefMove([opposite[square]])
+        for square in range(0,4):
+            if board[side[square]]  == 'X':
+                moved = prefMove([adjacent[square]])
+        if not moved:
+            prefMove([0,2,6,8]) # corners
+    else:  
+        if win_block():
+            pass
+        elif prefMove([0,2,6,8]): # corners 
+            pass
+        elif prefMove([4]): # middle
+            pass
+        else:
+            prefMove([1,3,5,7]) # middle row
 
 def prefMove(moves):
     global board
@@ -98,7 +115,7 @@ def getMove(player):
         except:
             square = -2
         square -= 1 # make input number match internal numbers
-        if square >= 0 and square < 10: # number in range
+        if square >= 0 and square < 9: # number in range - modified from book '10' threw and exception
             if board[square] == ' ': # if it is blank
                 board[square] = player
                 correct_number = True
