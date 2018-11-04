@@ -198,4 +198,7 @@ def somethingsHappeningHere():
 #    print('Game Over, O wins!')
 
 print('Here we go  . .  .')
-play()
+
+if __name__ == '__main__':
+    play()
+    
