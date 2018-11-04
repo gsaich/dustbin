@@ -1,15 +1,16 @@
 #! /usr/bin/env python
 # Tic-Tac-Toe 9 - print board - FTW - add utilities - AI1 - combine checkWin - add strategy
 from random import shuffle
+from pip._vendor.distlib._backport.shutil import move
 
 board = [ '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
 refBoard = [ '1', '2', '3', '4', '5', '6', '7', '8', '9' ]
 wins = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6] ] 
-move=0
+#move = ' '
 
 def play():
     global board
-    global move
+ #   global move
     print('Tic-Tac-Toe')
     print('play against the computer AI level 3')
     printBoards(board)
@@ -35,7 +36,7 @@ def play():
 
 
 def generateMove():
-    global move
+  #  global move
     corners = [0,2,6,8]
     opposite = [8,6,2,0]
     side = [1,3,5,7]
