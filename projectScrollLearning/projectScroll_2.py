@@ -8,7 +8,7 @@ import os, pygame, sys
 
 pygame.init()    # initialise graphics interface
 os.environ['SDL_VIDEO_WINDOW_POS'] = 'center'
-pygame.display.set_caption("Auto Cue test 1")
+pygame.display.set_caption("Auto Cue test 2")
 screenWidth = 980
 screenHeight = 610
 screen = pygame.display.set_mode([screenWidth, screenHeight], 0, 32)
@@ -28,7 +28,7 @@ numberOfLines = 0
 newsLines = list()
 
 def main():
-    print("Here is the news")
+#    print("Here is the news")
     getNews()
     lines=0
     while lines < numberOfLines:
@@ -38,15 +38,15 @@ def main():
         offset = 0
         while offset < textHeight:
             checkForEvent()
-            print("I am about to call draW Screen")
+#            print("I am about to call draW Screen")
             drawScreen(offset)
-            print("I just finisshed call to drawScreen")
+#            print("I just finished call to drawScreen")
             offset += scrollSize
-    time.sleep(10.0)
+    time.sleep(3.0)
     terminate()
         
 def getNews(): #opens new file
-    print("I am getting news")
+#    print("I am getting news")
     global numberOfLines, newsLines
     nfile = open("news.txt", "r")
     for line in nfile.readlines():
@@ -55,7 +55,7 @@ def getNews(): #opens new file
     nfile.close()
     
 def drawScreen(offset): # draw to the screen
-    print("I am drawing the screen")
+#    print("I am drawing the screen")
     global segment
     screen.blit(background,[0,0]) #set background colour
     for index in range(0, segments+1):
@@ -63,13 +63,13 @@ def drawScreen(offset): # draw to the screen
         if (segment > segments): # wraparound segment number
             segment = 0
         drawWords(segment, offset)
-        print("I just finished draWords - going to display update")
-    time.sleep(0.1) # slow it down
+#        print("I just finished draWords - going to display update")
+    time.sleep(1.0) # slow it down
     pygame.display.update()
-    print("I ran display update")
+#    print("I ran display update")
     
 def setWords(index, segment):
-    print("I am setting Words")
+#    print("I am setting Words")
     endOfLine = False
     margin = 30 # total gap for the two sides
     words = newsLines[index].split() # get an array of words from the line
@@ -85,7 +85,7 @@ def setWords(index, segment):
         textSurface[segment] = font.render(tryLine, True, cText, cBackground)
         tryWidth = textSurface[segment].get_rect()
         wordsWidth = tryWidth.right
-        print(tryLine, " -> is ", wordsWidth, " pixels wide")
+#        print(tryLine, " -> is ", wordsWidth, " pixels wide")
     useLine = " "
     if wordsWidth > screenWidth - margin: # for the end of the line
         wordsToUse -=  1 # use one less word
@@ -93,9 +93,21 @@ def setWords(index, segment):
         endOfLine = True
     for test in range(0, wordsToUse): # build up the line you want
         useLine = useLine + words[test] + " "
+        if len(useLine) > 3:
+            useOne = useLine[1]
+            useTwo = useLine[2]
+            if useTwo is " ":
+                if useOne is "a":
+                    pass
+                elif useOne is "A":
+                    pass
+                elif useOne is "I":
+                    pass
+                else:
+                     useLine = " " + (useLine[2:])       
     textSurface[segment] = font.render(useLine, True, cText, cBackground)
     print("Using the line: - ", useLine)
-    print()
+#    print()
     newsLines[index] = newsLines[index] [(len(useLine)-1) :] # The "-1" fixes a problem with clipping letters 
     # there is still a bug here it occurs when line buffering the -1 above corrects for leading letters being 
     # clipped during a transition - but it is leading to the appending of the last letter of
@@ -105,20 +117,20 @@ def setWords(index, segment):
     return (index)  # try something to stop chopping text 
 
 def drawWords(index, offset):
-    print("I am drawing Words")
+#    print("I am drawing Words")
     textRect = textSurface[index].get_rect()
     textRect.centerx = screenWidth /2
     textRect.top = screenHeight - (textHeight * index) - offset
     screen.blit(textSurface[index], textRect)
-    print("I made it to here " + str(index), str(offset))
+#    print("I made it to here " + str(index), str(offset))
     
 def terminate():  # close down the program
-    print("Closing down please wait ")
+#    print("Closing down please wait ")
     pygame.quit() # close pygame
     sys.exit()
     
 def checkForEvent(): # see if you need to quit
-    print("I am checking For Events")
+#    print("I am checking For Events")
     global scrollSize
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
