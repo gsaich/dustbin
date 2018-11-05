@@ -5,7 +5,6 @@ This is an Auto Cue Test 2 - reading a text file
 """
 import time #for delays
 import os, pygame, sys
-from _operator import index
 
 pygame.init()    # initialise graphics interface
 os.environ['SDL_VIDEO_WINDOW_POS'] = 'center'
