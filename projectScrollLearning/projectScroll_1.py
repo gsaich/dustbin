@@ -40,7 +40,7 @@ def drawScreen(offset): # draw to the screen
     #global segments
     screen.blit(background,[0,0]) #set background colour
     for index in range(0, segments+1):
-       # index +=1
+        #index +=1
         segment +=1
         if (segment > segments): # wraparound segment number
             segment = 0
