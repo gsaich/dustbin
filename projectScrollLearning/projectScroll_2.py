@@ -21,7 +21,7 @@ textSurface = [pygame.Surface((screenWidth, screenHeight)) for s in range(0, seg
 # define the colours to use for the user interface
 cBackground =(0,0,0)
 cText = (255,255,255)
-scrollSize = 30
+scrollSize = 2 #30
 background.fill(cBackground) # make background colour
 font = pygame.font.Font(None,textHeight)
 numberOfLines = 0
@@ -64,7 +64,7 @@ def drawScreen(offset): # draw to the screen
             segment = 0
         drawWords(segment, offset)
 #        print("I just finished draWords - going to display update")
-    time.sleep(1.0) # slow it down
+    time.sleep(0.02) # slow it down
     pygame.display.update()
 #    print("I ran display update")
     
