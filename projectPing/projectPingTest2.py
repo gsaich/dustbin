@@ -31,9 +31,6 @@ position = [int(hw),int(hh)] # position of the ball
 limit = [0, 0, 0, 0] # wall limits
 ballRad = 8 # size of the ball
 
-# dx =5
-# dy =10
-
 def main():
 	global position
 	updateBox(0,0) # set up wall limits
@@ -70,7 +67,7 @@ def drawScreen(px,py): # draw to the screen
 #global p
 	p = [int(px), int(py)]
 	screen.blit(background, [0, 0]) # set background colour
-	pygame.draw.rect(screen, (255,0,0), (hw - (box[0]/2), hh - (box[1]/2), box[0], box[1]), 2)
+	pygame.draw.rect(screen, (0,255,0), (hw - (box[0]/2), hh - (box[1]/2), box[0], box[1]), 2)
 	pygame.draw.circle(screen, cBlock, (p[0], p[1]), ballRad, 2)
 	pygame.display.update()
 	
@@ -79,9 +76,9 @@ def updateBox(d, amount):
 	box[d] += amount # not working, trying long hand
 	
 	limit[0] = hw - (box[0]/2) + ballRad # leftLimit
-	limit[1] = hw + (box[0]/2) + ballRad # rightLimit	
+	limit[1] = hw + (box[0]/2) - ballRad # rightLimit	
 	limit[2] = hh - (box[1]/2) + ballRad # topLimit
-	limit[3] = (hh + (box[1]/2)) + ballRad # bottomLimit
+	limit[3] = (hh + (box[1]/2)) - ballRad # bottomLimit 
 	
 def terminate(): # close the program
 	print("Closing down, please wait.")
