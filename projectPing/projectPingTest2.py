@@ -22,7 +22,7 @@ background = pygame.Surface((screenWidth, screenHeight))
 cBackground = (0,0,0)
 cBlock = (255,255,255)
 background.fill(cBackground) # make background colour
-box = [int(screenWidth - 80)], [int(screenHeight - 80)]
+box = [int(screenWidth - 80), int(screenHeight - 80)]
 boxFix = 0
 delta = [5, 10]
 hw = screenWidth / 2
@@ -37,17 +37,12 @@ ballRad = 8 # size of the ball
 def main():
 	global position
 	updateBox(0,0) # set up wall limits
-#	X = screenWidth /2
-#	Y = screenWidth /2
 	screen.blit(background, [0,0])
 	while True:
 		checkForEvent()
 		time.sleep(0.05)
 		drawScreen(position)
 		position = moveBall(position)
-#		X += dx
-#		Y += dy
-#		checkBounds(X,Y)
 
 def moveBall(p):
 	global delta
@@ -78,19 +73,19 @@ def drawScreen(px, py): # draw to the screen
 	pygame.display.update()
 	
 def updateBox(d, amount):
-	n=0
-	global box, limit, boxFix
-#	box[d] += amount # not working, trying long hand
-	boxFix = str(box[d])
-	print(len(boxFix))
-	while n < len(boxFix):
-		print(boxFix[n])
-		if boxFix[n] == '[' or boxFix[n] == ']':
-			print(n) #boxFix[n] = ''
-		n += 1
-	print(boxFix)
+#	n=0
+	global box, limit  # , boxFix
+	box[d] += amount # not working, trying long hand
+#	boxFix = str(box[d])
+#	print(len(boxFix))
+#	while n < len(boxFix):
+#		print(boxFix[n])
+#		if boxFix[n] == '[' or boxFix[n] == ']':
+#			print(n) #boxFix[n] = ''
+#		n += 1
+#	print(boxFix)
 #	box[d] = box[d] + amount # long hand
-	boxFix = (boxFix + amount) # long hand
+#	boxFix = (boxFix + amount) # long hand
 	
 	
 	limit[0] = hw - (box[0]/2) + ballRad # leftLimit
