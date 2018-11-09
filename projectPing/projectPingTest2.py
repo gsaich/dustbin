@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 Bounce with sound
-A Rasperry Pi test 2
+A Raspberry Pi test 2
 """
 
 import time # for delays
