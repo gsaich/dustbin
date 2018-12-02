@@ -1,22 +1,30 @@
 #!/usr/bin/env python
 """
-Bounce with sound
-A Raspberry Pi test 2
+Ping - Tennis for One - With Score
+A Raspberry Pi test 3
 """
 
 import time # for delays
 import os, pygame, sys
+import _random
 
 pygame.init() # initialise graphics interface
 pygame.mixer.quit()
 pygame.mixer.init(frequency = 22050, size = -16, channels = 2, buffer = 512)
 bounceSound = pygame.mixer.Sound("sounds/bounce.ogg")
 os.environ['SDL_VIDEO_WINDOW_POS'] = 'center'
-pygame.display.set_caption("Bounce2")
-screenWidth = 400
-screenHeight = 400
+pygame.display.set_caption("Ping 1-Player Game")
+screenWidth = 500
+screenHeight = 300
 screen = pygame.display.set_mode([screenWidth, screenHeight], 0, 32)
 background = pygame.Surface((screenWidth, screenHeight))
+textSize = 36
+scoreSurface = pygame.Surface((textSize,textSize))
+font = pygame.font.Font(None, textSize)
+pygame.event.set_allowed(None)
+pygame.event.set_allowed([pygame.KEYDOWN, pygame.QUIT])
+
+
 
 # define the colours to use for the user interface
 cBackground = (0,0,0)
