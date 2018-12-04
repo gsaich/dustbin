@@ -1,7 +1,7 @@
 #!/Python27 python
 # -*- coding: UTF-8 -*-
 
-# enable debugging
+# enable debugging.
 import cgitb
 cgitb.enable()
 
