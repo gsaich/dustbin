@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/Python27 python
 # -*- coding: UTF-8 -*-
 
 # enable debugging
