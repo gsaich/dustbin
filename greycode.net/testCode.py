@@ -1,4 +1,4 @@
-#!/Python27 python
+#! python
 # -*- coding: UTF-8 -*-
 
 # enable debugging.
